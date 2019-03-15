@@ -1,5 +1,3 @@
-"use strict"
-
 const SQLiteDAO = require('./db/sqlite3/sqlite-dao');
 
 const dirDB = 'db';
@@ -34,6 +32,4 @@ app.post('/login', jsonParser, (req, res) => {
     });
     if (yes == 1) res.send({ status: "ok", message: "login thanh cong!" });
     else res.send({ status: "nok", message: "login that bai!" });
-    //res.send({ status: "nok", message: "login that bai!" }); //send ve mot json
-    //res.end(JSON.stringify({ status: "ok", message: "login thanh cong!" })); //end ve mot string
 });

@@ -4,7 +4,7 @@ const app = express();
 var main = (isHttp) => {
     
   const resource = require('./routes/resource');
-  app.use('/excel', resource);
+  app.use('/user', resource);
 
   if (isHttp) {
     const httpServer = require('http').createServer(app);

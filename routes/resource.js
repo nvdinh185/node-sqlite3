@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 const handlers = require('../handlers/handler');
 
-router.get('/users', handlers.getUsers);
+router.get('/get-users', handlers.getUsers);
 
-router.post('/users', handlers.postUsers);
+router.post('/add', handlers.postAddUser);
 
 module.exports = router;
