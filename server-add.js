@@ -13,6 +13,7 @@ var server = require("http").createServer(app);
 server.listen(3000, () => console.log("Server is running"));
 
 app.post('/add', jsonParser, (req, res) => {
+	console.log("123");
     let insertTable = {
         name: 'users',
         cols: [

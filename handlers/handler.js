@@ -5,8 +5,18 @@ const dbFile = './' + dirDB + '/users.db';
 
 var db = new SQLiteDAO(dbFile);
 
+var arrData = [];
+
+db.getRsts("SELECT * FROM users")
+    .then(data => {
+        arrData = data;
+    })
+    .catch(err => {
+        console.log("Loi", err);
+    });
+
 const getUsers = (req, res) => {
-    res.send({ status: "ok1", message: "login thanh cong!" });
+    res.send(arrData);
 }
 
 const postAddUser = (req, res) => {
