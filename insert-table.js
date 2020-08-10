@@ -1,22 +1,15 @@
-const SQLiteDAO = require('./db/sqlite3/sqlite-dao');
-const dirDB = 'db';
-const dbFile = './' + dirDB + '/mydb.db';
+const arrObj = require('./util/array-object');
 
-var db = new SQLiteDAO(dbFile);
+var db = require('./db/sqlite3/db-pool');
 
-var insertTable = {
-    name: 'sinhvien',
-    cols: [
-        {
-            name: 'name',
-            value: "Le Thi Hoa"
-        }
-    ]
-};
+const info = {
+    id: 1,
+    name: "name-insert"
+}
 
-db.insert(insertTable)
+db.insert(arrObj.convertSqlFromJson("sinhvien", info))
     .then(data => {
-        console.log("Da them thanh cong!", data);
+        console.log("Da insert thanh cong!", data);
     })
     .catch(err => {
         console.log("Loi", err);

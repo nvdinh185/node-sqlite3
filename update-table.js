@@ -1,23 +1,13 @@
-const SQLiteDAO = require('./db/sqlite3/sqlite-dao');
-const dirDB = 'db';
-const dbFile = './' + dirDB + '/mydb.db';
+const arrObj = require('./util/array-object');
 
-var db = new SQLiteDAO(dbFile);
+var db = require('./db/sqlite3/db-pool');
 
-var updateTable = {
-    name: 'sinhvien',
-    cols: [{
-        name: 'name',
-        value: 'Nguyen Van Dinh'
-    }],
-    wheres: [{
-        name: 'id',
-        value: 1
-    }]
+const info = {
+    id: 1,
+    name: "name-update"
 }
 
-
-db.update(updateTable)
+db.update(arrObj.convertSqlFromJson("sinhvien", info))
     .then(data => {
         console.log("Da update thanh cong!", data);
     })

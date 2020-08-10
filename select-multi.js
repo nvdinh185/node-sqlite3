@@ -1,8 +1,4 @@
-const SQLiteDAO = require('./db/sqlite3/sqlite-dao');
-const dirDB = 'db';
-const dbFile = './' + dirDB + '/mydb.db';
-
-var db = new SQLiteDAO(dbFile);
+var db = require('./db/sqlite3/db-pool');
 
 db.getRsts("SELECT * FROM sinhvien")
     .then(data => {
