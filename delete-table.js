@@ -7,6 +7,7 @@ const info = {
     name: ""
 }
 
+// db.getRsts(`delete from sinhvien where id = ${1}`) // sử dụng cách này cũng được
 db.delete(arrObj.convertSqlFromJson("sinhvien", info))
     .then(data => {
         console.log("Da delete thanh cong!", data);

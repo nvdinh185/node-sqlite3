@@ -7,7 +7,20 @@ const info = {
     name: "name-insert"
 }
 
-db.insert(arrObj.convertSqlFromJson("sinhvien", info))
+// cách này cũng được
+var insertData = {
+    name: 'sinhvien',
+    cols: [
+        {
+            name: 'name',
+            value: "Le Thi Hoa"
+        }
+    ]
+};
+
+// console.log(insertData);
+// let InsertSql = arrObj.convertSqlFromJson("sinhvien", info) //cách này cũng được
+db.insert(insertData)
     .then(data => {
         console.log("Da insert thanh cong!", data);
     })
