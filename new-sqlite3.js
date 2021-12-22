@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const dbFile = './db/database/sinhvien.db';
+const dbFile = './db/database/nhanvien.db';
 
 const db = new sqlite3.Database(dbFile);
 
