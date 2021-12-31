@@ -48,12 +48,27 @@ let sql = 'INSERT INTO nhanvien(hoten) VALUES ' + placeholders;
 // output the INSERT statement
 console.log(sql);
 
-db.run(sql, languages, function (err) {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log(`Rows inserted ${this.changes}`);
+// db.run(sql, languages, function (err) {
+//     if (err) {
+//         return console.error(err.message);
+//     }
+//     console.log(`Rows inserted ${this.changes}`);
+// });
+
+// hàm chèn nhiều bản ghi ==================================================================================================================================================================
+// function insertMultiple() {
+const insertMultiple = () => new Promise((resolve, reject) => {
+    db.run(sql, languages, function (err) {
+        if (err) {
+            console.error(err.message);
+            reject(new Error(`Lỗi: ${err.message}`));
+        }
+        console.log(`Rows inserted ${this.changes}`);
+        resolve(this.changes);
+    });
 });
+insertMultiple().then(data => console.log("number insert: ", data))
+    .catch(err => console.log("err: ", err));
 
 // xoa ban ghi ==================================================================================================================================================================
 const id = 11;
@@ -63,6 +78,7 @@ db.run(`DELETE FROM nhanvien WHERE id > ?`, id, function (err) {
     }
     console.log(`Row(s) deleted ${this.changes}`);
 });
+// console.log("number insert : ", insertMultiple());
 // select bản ghi =======================================================================================================================================================================
 const selectDB = () => new Promise((resolve, reject) => {
     db.each("SELECT * FROM nhanvien WHERE id = 6", (err, row) => {
