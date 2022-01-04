@@ -21,14 +21,17 @@ insertOneRecord().then(data => console.log("Rows lastID insert: ", data))
 
 
 (async () => {
-    const res = await new Promise((resolve, reject) => {
-        db.run(`INSERT INTO nhanvien(hoten) VALUES(?)`, ['C123456'], function (err) {
-            if (err) reject(new Error(`Lỗi: ${err.message}`));
-            resolve(this.lastID);
+    try {
+        const res = await new Promise((resolve, reject) => {
+            db.run(`INSERT INTO nhanvien(hoten) VALUES(?)`, ['C123456'], function (err) {
+                if (err) reject(new Error(`Lỗi: ${err.message}`));
+                resolve(this.lastID);
+            })
         })
-    })
-
-    console.log(res);
+        console.log("res: ", res);
+    } catch (error) {
+        console.log("error: ", error);
+    }
 
 })();
 
