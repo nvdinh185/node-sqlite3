@@ -5,26 +5,31 @@ const db = new sqlite3.Database(dbFile);
 
 db.serialize();
 
-// db.each("SELECT * FROM nhanvien1 WHERE id = 6", (err, row) => {
-//     if (err) console.log("Lỗi: ", err);
-//     console.log("data: ", row);
-// });
-
-
 (async () => {
     const res = await db.each("SELECT * FROM nhanvien WHERE id = 6");
     console.log("res: ", res);
-    //     try {
-    //         const res = await new Promise((resolve, reject) => {
-    //             db.run(`INSERT INTO nhanvien(hoten) VALUES(?)`, ['C123456'], function (err) {
-    //                 if (err) reject(new Error(`Lỗi: ${err.message}`));
-    //                 resolve(this.lastID);
-    //             })
-    //         })
-    //     } catch (error) {
-    //         console.log("error: ", error);
-    //     }
+
+    try {
+        db.each(`SELECT * FROM nhanvien1 WHERE id = 6`, function (err, data) {
+            if (err) throw new Error(`Lỗi: ${err.message}`);
+            console.log("data: ", data);
+        })
+    } catch (error) {
+        console.log("error: ", error);
+    }
+
+    try {
+        const results = await new Promise((resolve, reject) => {
+            db.each(`SELECT * FROM nhanvien WHERE id = 6`, function (err, data) {
+                if (err) reject(new Error(`Lỗi: ${err.message}`));
+                resolve(data);
+            })
+        })
+        console.log("results: ", results);
+    } catch (error) {
+        console.log("error: ", error);
+    } finally {
+        db.close();
+    }
 
 })();
-
-db.close();
