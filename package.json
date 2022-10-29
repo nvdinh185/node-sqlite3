@@ -1,10 +1,10 @@
 {
-  "name": "sqlite3",
+  "name": "sqlite3demo",
   "version": "1.0.0",
   "description": "",
   "main": "create-sqlite3-from-excel.js",
   "dependencies": {
-    "sqlite3": "^5.0.0",
+    "sqlite3": "^5.1.2",
     "xlsx-to-json-lc": "^0.5.0"
   },
   "devDependencies": {},
