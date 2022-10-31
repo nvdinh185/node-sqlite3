@@ -8,14 +8,18 @@ db.serialize();
 (async () => {
     const res = await db.each("SELECT * FROM nhanvien WHERE id = 6");
     console.log("res: ", res);
+    const res2 = await db.all("SELECT * FROM nhanvien");
+    console.log("res2: ", res2);
 
     try {
-        db.each(`SELECT * FROM nhanvien1 WHERE id = 6`, function (err, data) {
+        db.each(`SELECT * FROM nhanvien WHERE id = 6`, function (err, data) {
             if (err) throw new Error(`Lỗi: ${err.message}`);
             console.log("data: ", data);
         })
     } catch (error) {
         console.log("error: ", error);
+    } finally {
+        console.log("Completed!");
     }
 
     try {

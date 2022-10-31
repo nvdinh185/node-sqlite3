@@ -41,19 +41,19 @@ db.run(`INSERT INTO nhanvien(hoten) VALUES(?)`, ['C123'], function (err) {
 let languages = ['C++', 'Python', 'Java', 'C#', 'Go'];
 // construct the insert statement with multiple placeholders
 // based on the number of rows
-let placeholders = languages.map((language) => '(?)').join(',');
+let placeholders = languages.map(() => '(?)').join(',');
 console.log(placeholders);
 let sql = 'INSERT INTO nhanvien(hoten) VALUES ' + placeholders;
 
 // output the INSERT statement
 console.log(sql);
 
-// db.run(sql, languages, function (err) {
-//     if (err) {
-//         return console.error(err.message);
-//     }
-//     console.log(`Rows inserted ${this.changes}`);
-// });
+db.run(sql, languages, function (err) {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log(`Rows inserted1 ${this.changes}`);
+});
 
 // hàm chèn nhiều bản ghi ==================================================================================================================================================================
 // function insertMultiple() {
@@ -63,7 +63,7 @@ const insertMultiple = () => new Promise((resolve, reject) => {
             console.error(err.message);
             reject(new Error(`Lỗi: ${err.message}`));
         }
-        console.log(`Rows inserted ${this.changes}`);
+        console.log(`Rows inserted2 ${this.changes}`);
         resolve(this.changes);
     });
 });
