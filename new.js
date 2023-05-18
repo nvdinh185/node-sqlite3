@@ -24,7 +24,7 @@ db.each(`SELECT id, hoten FROM nhanvien WHERE id = ${2}`, (err, row) => {
         })
     })
 
-    console.log(res);
+    console.log('res: ', res);
 
 })();
 

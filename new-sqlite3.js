@@ -11,29 +11,30 @@ db.serialize(() => {
     )`
 
     //Tạo cơ sở dữ liệu
-    db.run(sql);
+    // db.run(sql);
 
     // Thêm bản ghi vào cơ sở dữ liệu
-    const stmt = db.prepare("INSERT INTO nhanvien (hoten) VALUES (?)");
-
-    for (let i = 1; i < 6; i++) {
-        stmt.run("Nhân viên thứ " + i);
-    }
-    stmt.finalize();
-
     db.run(`INSERT INTO nhanvien (hoten) VALUES ("Lê Thị Hoa")`);
-    db.run(`UPDATE nhanvien SET hoten = ? WHERE id = ?`, "Nguyễn Văn Định", 5);
-    db.run(`DELETE FROM nhanvien WHERE id = ${1}`);
 
-    // Lấy dữ liệu theo từng bản ghi
-    db.each("SELECT id, hoten FROM nhanvien", (err, row) => {
-        console.log(row.id + ": " + row.hoten);
-    });
+    // const stmt = db.prepare("INSERT INTO nhanvien (hoten) VALUES (?)");
 
-    // Lấy tất cả bản ghi
-    db.all("SELECT * FROM nhanvien", (err, row) => {
-        console.log(row);
-    });
+    // for (let i = 1; i < 6; i++) {
+    //     stmt.run("Nhân viên thứ " + i);
+    // }
+    // stmt.finalize();
+
+    // db.run(`UPDATE nhanvien SET hoten = ? WHERE id = ?`, "Nguyễn Văn Định", 5);
+    // db.run(`DELETE FROM nhanvien WHERE id = ${1}`);
+
+    // // Lấy dữ liệu theo từng bản ghi
+    // db.each("SELECT id, hoten FROM nhanvien", (err, row) => {
+    //     console.log(row.id + ": " + row.hoten);
+    // });
+
+    // // Lấy tất cả bản ghi
+    // db.all("SELECT * FROM nhanvien", (err, row) => {
+    //     console.log(row);
+    // });
 });
 
 db.close();
